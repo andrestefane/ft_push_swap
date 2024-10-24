@@ -6,11 +6,23 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2024/10/24 15:54:45 by astefane         ###   ########.fr       */
+/*   Updated: 2024/10/24 21:30:20 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *str)
 {
