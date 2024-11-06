@@ -22,27 +22,6 @@
 # include <limits.h>
 # include "./libft/libft.h"
 
-/* typedef struct s_list
-{
-	int	*sa_swap;
-	int	*sb_swap;
-	int	*sp;
-	int	sia;
-	int	sib;
-	int	sip;
-	int	arc;
-	int	percentage;
-	int	lsp;
-	int	control;
-	int	cont;
-	int	error;
-	int	atoierror;
-	int	jatoi;
-	int	size_block;
-	int	argmax;
-	int	arguments;
-}	t_list; */
-
 typedef struct s_stack
 {
 	int	*collection;
