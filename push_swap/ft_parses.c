@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:57:56 by astefane          #+#    #+#             */
-/*   Updated: 2024/10/31 16:44:08 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:02:20 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,59 +39,84 @@ int	ft_check_num(char *s)
 	return (-1);
 }
 
-int	ft_check_args(int argc, char **argv)
-{
-	int	i;
-
-	i = -1;
-	while (++i < argc)
-	{
-		if (ft_check_num(argv[i + 1]) == -1 || *argv[i + 1] == '\0')
-			return (-1);
-	}
-	return (0);
-}
-
 int	ft_atoierror(int n)
 {
 	n = 0;
+	if (n == 0)
+	{
+		ft_putstr("Error\n");
+		exit (1);
+	}
 	return (n);
 }
 
 int	ft_validate_args(int argc, char **argv)
 {
-	int			i;
-	int			value;
+	int		i;
+	char	**arg;
+	int		j;
+	int		value;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_check_num(argv[i]) == -1 || *argv[i] == '\0')
-			return (0);
-		value = ft_atoi(argv[i]);
-		if (ft_check_repe(value, argv, argc) == 2)
+		arg = ft_split(argv[i], ' ');
+		j = 0;
+		while (arg[j])
 		{
-			ft_putstr("error\n");
-			exit (1);
+			if (ft_check_num(arg[j]) == -1 || *arg[j] == '\0')
+				return (-1);
+			value = ft_atoi(arg[j]);
+			if (ft_check_repe(value, argv, argc) > 1)
+			{
+				ft_putstr("Error\n");
+				exit(1);
+			}
+			j++;
 		}
+		free(arg);
 		i++;
 	}
-	return (1);
+	return (0);
 }
+
 
 int	ft_check_repe(int value, char **argv, int argc)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	int		k;
+	char	**arg;
 
 	i = 1;
 	j = 0;
+
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) == value)
-			j++;
+		arg = ft_split(argv[i], ' ');
+		k = 0;
+		while (arg[k])
+		{
+			if (ft_atoi(arg[k]) == value)
+				j++;
+			k++;
+		}
+		free(arg);
 		i++;
 	}
 	return (j);
 }
 
+int	ft_check_duplicate(t_stack *stack, int num)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->collection[i] == num)
+			return (1);
+		i++;
+	}
+	return (0);
+}

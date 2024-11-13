@@ -6,23 +6,11 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2024/10/31 15:39:27 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:26:16 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -77,13 +65,20 @@ void	ft_putnbr(int n)
 
 int	ft_insert_number(t_stack	*stack)
 {
-	int	i;
+	int		i;
+	int		n;
+	char	*p;
 
 	i = 0;
 	while (i < stack->size)
 	{
-		ft_putnbr(stack->collection[i]);
+		p = ft_itoa(stack->collection[i]);
+		n = ft_atoi(p);
+		ft_putnbr(n);
 		ft_putchar('\n');
+		free(p);
 		i++;
 	}
+	return (0);
 }
+

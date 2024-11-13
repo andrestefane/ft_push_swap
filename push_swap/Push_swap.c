@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:03:03 by astefane          #+#    #+#             */
-/*   Updated: 2024/10/31 16:34:37 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:35:35 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ t_stack	*create_stack(int capacity)
 
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
-	{
-		ft_free(stack, 1);
 		return (NULL);
-	}
 	stack->collection = malloc(capacity * sizeof(int));
 	if (!stack->collection)
 	{
-		ft_free(stack, 1);
+		free(stack);
+		ft_putstr("Error\n");
 		return (NULL);
 	}
 	stack->capacity = capacity;
@@ -50,17 +48,33 @@ t_stack	*create_stack(int capacity)
 
 int	ft_push(t_stack *stack, int arc, char **argv)
 {
-	int	i;
+	int		i;
+	int		j;
+	int		n;
+	char	**nums;
 
 	i = 0;
 	if (stack->size >= stack->capacity)
 		return (-1);
 	while (i < arc - 1)
 	{
-		if (ft_check_num(argv[i + 1]) == -1)
-			return (-1);
-		stack->collection[stack->size] = ft_atoi(argv[i + 1]);
-		stack->size++;
+		nums = ft_split(argv[i + 1], ' ');
+		j = 0;
+		while (nums[j])
+		{
+			if (ft_check_num(nums[j]) == -1)
+			{
+				free(nums[j]);
+				free(nums);
+				return (-1);
+			}
+			n = ft_atoi(nums[j]);
+			stack->collection[stack->size] = n;
+			stack->size++;
+			free(nums[j]);
+			j++;
+		}
+		free(nums);
 		i++;
 	}
 	return (0);
@@ -77,9 +91,12 @@ int	main(int argc, char **argv)
 	stack_b = ft_create_stack_b(stack_a->capacity);
 	if (!stack_b)
 		return (1);
-	ft_free(stack_a, 0);
+	ft_quick_sort(stack_a, stack_b);
+	printf("stack_a después de ordenar:\n");
+	ft_insert_number(stack_a);
+	ft_free(stack_a, 1);
+	ft_free(stack_b, 1);
 	return (0);
 }
-
 
 
