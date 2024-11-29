@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:03:26 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/22 16:04:07 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:13:15 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rrb_reverse_rotate_b(t_stack *stack)
 {
-	char	*temp;
+	int		temp;
 	int		i;
 
 	temp = stack->collection[stack->size - 1];
@@ -25,4 +25,10 @@ void	rrb_reverse_rotate_b(t_stack *stack)
 		i--;
 	}
 	stack->collection[0] = temp;
+}
+
+void	print_rrb(t_stack *stack)
+{
+	rrb_reverse_rotate_b(stack);
+	ft_putstr("rrb\n");
 }

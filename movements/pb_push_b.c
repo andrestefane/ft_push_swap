@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:29:32 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/22 15:39:03 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:05:33 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 
 void	pb_push_b(t_stack *stack_a, t_stack *stack_b)
 {
-	char	*temp;
-	int		i;
+	int	temp;
+	int	i;
 
 	if (stack_a->size < 1)
-	{
-		ft_putstr("Error\n");
 		return ;
-	}
-	i = 0;
 	temp = stack_a->collection[0];
 	i = stack_b->size;
 	while (i > 0)
@@ -39,4 +35,10 @@ void	pb_push_b(t_stack *stack_a, t_stack *stack_b)
 	}
 	stack_b->size++;
 	stack_a->size--;
+}
+
+void	print_pb(t_stack *stack_a, t_stack *stack_b)
+{
+	pb_push_b(stack_a, stack_b);
+	ft_putstr("pb\n");
 }

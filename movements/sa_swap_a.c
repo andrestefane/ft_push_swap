@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:26:24 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/22 14:52:40 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:15:40 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sa_swap_a(t_stack *stack)
 {
-	char	*temp;
+	int	temp;
 
 	if (stack->size < 2)
 	{
@@ -24,4 +24,10 @@ void	sa_swap_a(t_stack *stack)
 	temp = stack->collection[0];
 	stack->collection[0] = stack->collection[1];
 	stack->collection[1] = temp;
+}
+
+void	print_sa(t_stack *stack)
+{
+	sa_swap_a(stack);
+	ft_putstr("sa\n");
 }

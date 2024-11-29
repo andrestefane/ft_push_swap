@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:53:46 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/22 15:51:58 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:26:42 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,10 @@ void	ss_swap_ab(t_stack *stack_a, t_stack *stack_b)
 	}
 	sa_swap_a(stack_a);
 	sb_swap_b(stack_b);
+}
+
+void	print_swap_swab(t_stack *stack_a, t_stack *stack_b)
+{
+	ss_swap_ab(stack_a, stack_b);
+	ft_putstr("swap swab\n");
 }
