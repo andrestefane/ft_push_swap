@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:13:11 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/19 12:42:11 by astefane         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:42:52 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	ft_word_count(char const *s, char c)
 	return (count);
 }
 
-void	ft_freelst(char **lst, int i)
+static void	ft_freelst(char **lst, int i)
 {
 	while (i >= 0)
 		free(lst[i--]);
@@ -64,4 +64,20 @@ static char	**ft_word_split(char **lst, char const *s, char c, int i)
 	}
 	lst[i] = NULL;
 	return (lst);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**lst;
+	int		i;
+
+	i = 0;
+	lst = malloc((ft_word_count(s, c) + 1) * sizeof(char *));
+	if (!s || !lst)
+		return (NULL);
+	lst = ft_word_split(lst, s, c, i);
+	if (!lst)
+		return (NULL);
+	else
+		return (lst);
 }

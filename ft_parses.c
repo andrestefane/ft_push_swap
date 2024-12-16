@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:57:56 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/20 13:25:16 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:59:59 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,46 @@ int	ft_atoierror(int n)
 	return (n);
 }
 
+int	ft_validate_split(char **arg, char **argv, int argc)
+{
+	int	j;
+	int	value;
+
+	j = 0;
+	while (arg[j])
+	{
+		if (ft_check_num(arg[j]) == -1 || *arg[j] == '\0')
+			return (-1);
+		value = ft_new_atoi(arg[j]);
+		if (ft_check_repe(value, argv, argc) > 1)
+			return (-1);
+		j++;
+	}
+	return (0);
+}
+
 int	ft_validate_args(int argc, char **argv)
 {
 	int		i;
 	char	**arg;
-	int		j;
-	int		value;
 
 	i = 1;
 	while (i < argc)
 	{
 		arg = ft_split(argv[i], ' ');
-		j = 0;
-		while (arg[j])
+		if (!arg)
+			return (-1);
+		if (ft_validate_split(arg, argv, argc) == -1)
 		{
-			if (ft_check_num(arg[j]) == -1 || *arg[j] == '\0')
-			{
-				return (-1);
-			}
-			value = ft_new_atoi(arg[j]);
-			if (ft_check_repe(value, argv, argc) > 1)
-			{
-				ft_putstr("Error\n");
-				exit(1);
-			}
-			j++;
+			ft_freedoom(arg);
+			return (-1);
 		}
+		if (is_sorted_arg(argc, argv) == 1)
+		{
+			ft_putstr("ordenado\n");
+			exit (0);
+		}
+		ft_freedoom(arg);
 		i++;
 	}
 	return (0);
@@ -90,7 +104,6 @@ int	ft_check_repe(int value, char **argv, int argc)
 
 	i = 1;
 	j = 0;
-
 	while (i < argc)
 	{
 		arg = ft_split(argv[i], ' ');
@@ -101,21 +114,8 @@ int	ft_check_repe(int value, char **argv, int argc)
 				j++;
 			k++;
 		}
+		ft_freedoom(arg);
 		i++;
 	}
 	return (j);
-}
-
-int	ft_check_duplicate(t_stack *stack, int num)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size)
-	{
-		if (stack->collection[i] == num)
-			return (1);
-		i++;
-	}
-	return (0);
 }

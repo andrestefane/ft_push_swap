@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2024/11/20 13:21:05 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:40:33 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,41 @@ void	ft_putnbr(int n)
 	}
 }
 
-int	ft_insert_number(t_stack	*stack)
+int	process_arg(char *arg, int *prev_num)
 {
-	int		i;
+	char	**split;
+	int		j;
+	int		current_num;
 
-	i = 0;
-	while (i < stack->size)
+	split = ft_split(arg, ' ');
+	j = 0;
+	while (split[j])
 	{
-		ft_putnbr(stack->collection[i]);
-		ft_putchar('\n');
+		current_num = ft_new_atoi(split[j]);
+		if (*prev_num > current_num)
+		{
+			ft_freedoom(split);
+			return (0);
+		}
+		*prev_num = current_num;
+		j++;
+	}
+	ft_freedoom(split);
+	return (1);
+}
+
+int	is_sorted_arg(int argc, char **argv)
+{
+	int	i;
+	int	prev_num;
+
+	i = 1;
+	prev_num = ft_new_atoi(argv[i]);
+	while (i < argc)
+	{
+		if (!process_arg(argv[i], &prev_num))
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }

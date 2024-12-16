@@ -6,7 +6,7 @@
 #    By: astefane <astefane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 17:31:38 by astefane          #+#    #+#              #
-#    Updated: 2024/10/31 16:04:38 by astefane         ###   ########.fr        #
+#    Updated: 2024/11/23 20:24:17 by astefane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I.
 
-NAME			= $(OUTPUT_DIR)../libft.a
+NAME			= $(OUTPUT_DIR)./libft.a
 
 all:			$(NAME)
 
