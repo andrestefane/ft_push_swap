@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:24:53 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 19:38:37 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:29:18 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,4 @@ int min_value, int max_value)
 		move_min_to_top(stack_a);
 		print_pb(stack_a, stack_b);
 	}
-}
-
-int	get_position(t_stack *stack, int index)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size)
-	{
-		if (stack->collection[i] == index)
-			return (i);
-		i++;
-	}
-	return (-1);
 }

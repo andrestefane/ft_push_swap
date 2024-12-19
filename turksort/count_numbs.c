@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:43:55 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 19:12:20 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:09:20 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,4 @@ int	find_next_in_rage(t_stack *stack, int min, int max)
 		i++;
 	}
 	return (-1);
-}
-
-void	change_pivot(t_stack *stack, int *pivot)
-{
-	int	new_pivot;
-	int	i;
-
-	new_pivot = stack->collection[0];
-	i = 1;
-	while (i < stack->size)
-	{
-		if (stack->collection[i] > new_pivot)
-			new_pivot = stack->collection[i];
-		i++;
-	}
-	*pivot = new_pivot;
 }

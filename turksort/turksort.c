@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:41:15 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 20:05:35 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:06:32 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	turksort(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	}
 	if (stack_a->size <= 5)
-		size_5(stack_a, stack_b);
+		turksort_to_b_5(stack_a, stack_b);
 	else if (stack_a->size <= 100)
 	{
 		turksort_to_b(stack_a, stack_b, min_value, max_value);
@@ -85,20 +85,17 @@ void	turksort(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	size_5(t_stack *stack_a, t_stack *stack_b)
+void	turksort_to_b_5(t_stack *stack_a, t_stack *stack_b)
 {
-	int	negative;
+	int	index;
 
-	negative = count_negatives(stack_a);
-	if (negative <= stack_a->size - negative)
+	while (stack_b->size < 2)
 	{
-		divide_stack(stack_a, stack_b);
-		sort_stack(stack_a);
+		index = find_min_index(stack_a);
+		move_index_to_top_a(stack_a, index);
+		print_pb(stack_a, stack_b);
 	}
-	else
-	{
-		divide_negatives(stack_a, stack_b);
-		sort_stack(stack_a);
-	}
-	order_stack_b(stack_b, stack_a);
+	sort_stack(stack_a);
+	while (stack_b->size > 0)
+		print_pa(stack_a, stack_b);
 }

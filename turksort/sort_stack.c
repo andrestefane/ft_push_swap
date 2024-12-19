@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:13:07 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 19:02:23 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:50:51 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,3 @@ void	sort_stack(t_stack *stack)
 			print_sa(stack);
 	}
 }
-
-int	calculate_moves(t_stack *stack, int index)
-{
-	if (index <= stack->size / 2)
-		return (index); // Rotación hacia arriba (ra)
-	else
-		return (stack->size - index); // Rotación hacia abajo (rra)
-}
-

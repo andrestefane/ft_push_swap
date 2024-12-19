@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:57:56 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 17:59:59 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:18:42 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,11 @@ int	ft_check_num(char *s)
 	return (-1);
 }
 
-int	ft_atoierror(int n)
+int	ft_atoierror(int sign)
 {
-	n = 0;
-	if (n == 0)
-	{
-		ft_putstr("Error\n");
-		exit (1);
-	}
-	return (n);
+	if (sign == 1)
+		return (INT_MAX);
+	return (INT_MIN);
 }
 
 int	ft_validate_split(char **arg, char **argv, int argc)
@@ -86,7 +82,7 @@ int	ft_validate_args(int argc, char **argv)
 		}
 		if (is_sorted_arg(argc, argv) == 1)
 		{
-			ft_putstr("ordenado\n");
+			ft_freedoom(arg);
 			exit (0);
 		}
 		ft_freedoom(arg);

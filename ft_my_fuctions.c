@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 18:40:33 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:23:00 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,51 @@
 int	ft_new_atoi(const char *str)
 {
 	int				i;
-	int				valorfinal;
+	int				sign;
 	long long int	n;
 
 	n = 0;
 	i = 0;
-	valorfinal = 1;
+	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			valorfinal = -1;
+			sign = -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		n = n * 10 + str[i] - '0';
 		i++;
-		if (n > INT_MAX || n < INT_MIN)
+		if ((sign == 1 && n > INT_MAX)
+			|| (sign == -1 && n > (long long)INT_MAX + 1))
+			return (-1);
+	}
+	return ((int)(n * sign));
+}
+
+int	calculate_total_capacity(int argc, char **argv)
+{
+	int		i;
+	int		total_capacity;
+	char	**nums;
+	int		j;
+
+	i = 1;
+	total_capacity = 0;
+	while (i < argc)
+	{
+		nums = ft_split(argv[i], ' ');
+		j = 0;
+		while (nums[j])
 		{
-			return (ft_atoierror(n));
+			total_capacity++;
+			j++;
 		}
+		ft_freedoom(nums);
+		i++;
 	}
-	return (n * valorfinal);
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int n)
-{
-	long	ln;
-
-	ln = n;
-	if (ln < 0)
-	{
-		ft_putchar('-');
-		ln *= -1;
-	}
-	if (ln <= 9)
-		ft_putchar(ln + '0');
-	else
-	{
-		ft_putnbr(ln / 10);
-		ft_putnbr(ln % 10);
-	}
+	return (total_capacity);
 }
 
 int	process_arg(char *arg, int *prev_num)

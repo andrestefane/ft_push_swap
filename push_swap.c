@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:03:03 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/16 20:03:10 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:21:06 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_free(t_stack *stack, int error)
 {
 	if (stack)
 	{
-		free(stack->collection);
+		if (stack->collection)
+			free(stack->collection);
 		free(stack);
-		exit(1);
 	}
 	if (error == 1)
 	{
@@ -51,7 +51,11 @@ int	main(int argc, char **argv)
 	int			i;
 
 	stack_a = ft_create_stack_a(argc, argv);
+	if (!stack_a)
+		ft_free(stack_a, 1);
 	stack_b = ft_create_stack_b(stack_a->capacity);
+	if (!stack_b)
+		ft_free(stack_b, 1);
 	turksort(stack_a, stack_b);
 	i = 0;
 	while (i < stack_a->size)
