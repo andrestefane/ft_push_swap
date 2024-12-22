@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:17:21 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/18 14:45:40 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:40:13 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ t_stack	*ft_create_stack_a(int argc, char **argv)
 	int		total_capacity;
 
 	stack_a = NULL;
-	if (argc < 2)
-		ft_free(stack_a, 0);
 	if (ft_validate_args(argc, argv) == -1)
 		ft_free(stack_a, 1);
 	total_capacity = calculate_total_capacity(argc, argv);

@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/18 16:23:00 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/22 15:43:44 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int	process_arg(char *arg, int *prev_num)
 	j = 0;
 	while (split[j])
 	{
+		if (ft_check_num(split[j]) == -1)
+		{
+			ft_freedoom(split);
+			return (0);
+		}
 		current_num = ft_new_atoi(split[j]);
 		if (*prev_num > current_num)
 		{
@@ -91,7 +96,13 @@ int	is_sorted_arg(int argc, char **argv)
 	int	prev_num;
 
 	i = 1;
+	if (ft_check_num(argv[i]) == -1)
+	{
+		return (-1);
+	}
 	prev_num = ft_new_atoi(argv[i]);
+	if (prev_num == -1)
+		return (0);
 	while (i < argc)
 	{
 		if (!process_arg(argv[i], &prev_num))

@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:27:46 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/18 19:09:28 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/22 11:28:09 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_stack		*create_stack(int capacity);
 int			ft_validate_split(char **arg, char **argv, int argc);
 int			ft_check_repe(int value, char **argv, int argc);
 int			calculate_total_capacity(int argc, char **argv);
+int			ft_check_length_and_limits(char *s, int is_negative);
 int			ft_validate_args(int argc, char **argv);
 int			process_arg(char *arg, int *prev_num);
 int			is_sorted_arg(int argc, char **argv);
@@ -47,7 +48,6 @@ void		ft_free(t_stack *stack, int error);
 int			ft_new_atoi(const char *str);
 void		ft_freedoom(char **str);
 int			ft_check_num(char *s);
-int			ft_atoierror(int n);
 void		ft_putchar(char c);
 
 //Movimientos
