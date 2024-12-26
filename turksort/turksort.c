@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:41:15 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/18 19:06:32 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:13:50 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,50 @@
 void	turksort_to_b(t_stack *stack_a, t_stack *stack_b,
 int min_value, int max_value)
 {
-	int	chunk_size;
-	int	chunk_min;
-	int	chunk_max;
-	int	i;
-	int	index;
+	int		index;
+	int		element;
+	int		best_rotation_cost;
 
-	chunk_size = (max_value - min_value) / 5;
-	i = 0;
-	while (i < 5)
-	{
-		chunk_min = min_value + i * chunk_size;
-		chunk_max = min_value + (i + 1) * chunk_size;
-		while (elements_in_range(stack_a, chunk_min, chunk_max))
-		{
-			index = find_next_in_rage(stack_a, chunk_min, chunk_max);
-			move_index_to_top_a(stack_a, index);
-			print_pb(stack_a, stack_b);
-		}
-		i++;
-	}
 	while (stack_a->size > 0)
 	{
-		move_min_to_top(stack_a);
-		print_pb(stack_a, stack_b);
+		index = find_next_in_rage(stack_a, min_value, max_value);
+		if (index == -1)
+			break ;
+		element = stack_a->collection[index];
+		best_rotation_cost = rotate_ab(stack_a, stack_b);
+		if (best_rotation_cost == case_rarb(stack_a, stack_b, element))
+			apply_rarb(stack_a, stack_b, element, 'a');
+		else if (best_rotation_cost == case_rrarrb(stack_a, stack_b, element))
+			apply_rrarrb(stack_a, stack_b, element, 'a');
+		else if (best_rotation_cost == case_rarrb(stack_a, stack_b, element))
+			apply_rarrb(stack_a, stack_b, element, 'a');
+		else if (best_rotation_cost == case_rrarb(stack_a, stack_b, element))
+			apply_rrarb(stack_a, stack_b, element, 'a');
 	}
+	turksort_sort_b(stack_b, stack_a);
 }
 
 void	turksort_sort_b(t_stack *stack_b, t_stack *stack_a)
 {
-	int	index;
+	int		index;
+	int		element;
+	int		best_rotation_cost;
 
 	while (stack_b->size > 0)
 	{
 		index = find_max_index(stack_b);
-		move_index_to_top_b(stack_b, index);
-		print_pa(stack_a, stack_b);
+		if (index == -1)
+			break ;
+		element = stack_b->collection[index];
+		best_rotation_cost = rotate_ba(stack_a, stack_b);
+		if (best_rotation_cost == case_rarb_a(stack_a, stack_b, element))
+			apply_rarb(stack_a, stack_b, element, 'b');
+		else if (best_rotation_cost == case_rrarrb_a(stack_a, stack_b, element))
+			apply_rrarrb(stack_a, stack_b, element, 'b');
+		else if (best_rotation_cost == case_rarrb_a(stack_a, stack_b, element))
+			apply_rarrb(stack_a, stack_b, element, 'b');
+		else if (best_rotation_cost == case_rrarb_a(stack_a, stack_b, element))
+			apply_rrarb(stack_a, stack_b, element, 'b');
 	}
 }
 
@@ -73,14 +81,9 @@ void	turksort(t_stack *stack_a, t_stack *stack_b)
 	}
 	if (stack_a->size <= 5)
 		turksort_to_b_5(stack_a, stack_b);
-	else if (stack_a->size <= 100)
-	{
-		turksort_to_b(stack_a, stack_b, min_value, max_value);
-		turksort_sort_b(stack_b, stack_a);
-	}
 	else
 	{
-		big_turksort_to_b(stack_a, stack_b, min_value, max_value);
+		turksort_to_b(stack_a, stack_b, min_value, max_value);
 		turksort_sort_b(stack_b, stack_a);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:03:03 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/22 10:35:32 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:15:56 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
+	int i;
 
 	if (argc < 2)
 	{
@@ -61,6 +62,12 @@ int	main(int argc, char **argv)
 	if (!stack_b)
 		ft_free(stack_b, 1);
 	turksort(stack_a, stack_b);
+	i = 0;
+	while (i < stack_a->size)
+	{
+		printf("%d ", stack_a->collection[i]);
+		i++;
+	}
 	ft_free(stack_a, 0);
 	ft_free(stack_b, 0);
 	return (0);

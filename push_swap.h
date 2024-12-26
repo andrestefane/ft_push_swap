@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:27:46 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/22 11:28:09 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/26 16:44:07 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,32 @@ void		sort_stack(t_stack *stack);
 
 void		big_turksort_to_b(t_stack *stack_a, t_stack *stack_b,
 				int min_value, int max_value);
+
+//Pruebas
+char		determine_best_move(t_stack *stack_a, t_stack *stack_b,
+				int element, int *min_case);
+int			find_place_stack_a(t_stack *stack, int c);
+int			find_place_stack_b(t_stack *stack, int c);
+int			find_index(t_stack *stack, int c);
+int			ft_min(t_stack *stack);
+int			ft_max(t_stack *stack);
+
+//Count moves pruebas
+
+int			case_rarb(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rarb_a(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rrarrb(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rrarrb_a(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rarrb(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rarrb_a(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rrarb(t_stack *stack_a, t_stack *stack_b, int c);
+int			case_rrarb_a(t_stack *stack_a, t_stack *stack_b, int c);
+int			rotate_ba(t_stack *stack_a, t_stack *stack_b);
+int			rotate_ab(t_stack *stack_a, t_stack *stack_b);
+
+//pruebas moves
+int			apply_rrarrb(t_stack *a, t_stack *b, int c, char ab);
+int			apply_rrarb(t_stack *a, t_stack *b, int c, char ab);
+int			apply_rarrb(t_stack *a, t_stack *b, int c, char ab);
+int			apply_rarb(t_stack *a, t_stack *b, int c, char ab);
 #endif
