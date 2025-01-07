@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:24:53 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/26 16:44:20 by astefane         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:29:18 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,54 +40,4 @@ int min_value, int max_value)
 		move_min_to_top(stack_a);
 		print_pb(stack_a, stack_b);
 	}
-}
-
-int	rotate_ab(t_stack *stack_a, t_stack *stack_b)
-{
-	int	cost;
-	int	element;
-	int	i;
-
-	i = 0;
-	element = stack_a->collection[i];
-	cost = case_rrarrb(stack_a, stack_b, element);
-	while (i < stack_a->size)
-	{
-		element = stack_a->collection[i];
-		if (cost > case_rarb(stack_a, stack_b, element))
-			cost = case_rarb(stack_a, stack_b, element);
-		if (cost > case_rrarrb(stack_a, stack_b, element))
-			cost = case_rrarrb(stack_a, stack_b, element);
-		if (cost > case_rarrb(stack_a, stack_b, element))
-			cost = case_rarrb(stack_a, stack_b, element);
-		if (cost > case_rrarb(stack_a, stack_b, element))
-			cost = case_rrarb(stack_a, stack_b, element);
-		i++;
-	}
-	return (cost);
-}
-
-int	rotate_ba(t_stack *stack_a, t_stack *stack_b)
-{
-	int	element;
-	int	cost;
-	int	i;
-
-	i = 0;
-	element = stack_b->collection[i];
-	cost = case_rrarrb_a(stack_a, stack_b, element);
-	while (i < stack_b->size)
-	{
-		element = stack_b->collection[i];
-		if (cost > case_rarb_a(stack_a, stack_b, element))
-			cost = case_rarb_a(stack_a, stack_b, element);
-		if (cost > case_rrarrb_a(stack_a, stack_b, element))
-			cost = case_rrarrb_a(stack_a, stack_b, element);
-		if (cost > case_rarrb_a(stack_a, stack_b, element))
-			cost = case_rarrb_a(stack_a, stack_b, element);
-		if (cost > case_rrarb_a(stack_a, stack_b, element))
-			cost = case_rrarb_a(stack_a, stack_b, element);
-		i++;
-	}
-	return (cost);
 }

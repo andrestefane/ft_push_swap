@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:27:46 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/26 16:44:07 by astefane         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:33:13 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			ft_check_length_and_limits(char *s, int is_negative);
 int			ft_validate_args(int argc, char **argv);
 int			process_arg(char *arg, int *prev_num);
 int			is_sorted_arg(int argc, char **argv);
+int			is_split_sorted(char **split, int *prev_num);
 void		ft_free(t_stack *stack, int error);
 int			ft_new_atoi(const char *str);
 void		ft_freedoom(char **str);
@@ -81,6 +82,8 @@ void		turksort_to_b(t_stack *stack_a, t_stack *stack_b,
 				int min_value, int max_value);
 void		turksort(t_stack *stack_a, t_stack *stack_b);
 void		turksort_sort_b(t_stack *stack_b, t_stack *stack_a);
+void		big_turksort_to_b(t_stack *stack_a, t_stack *stack_b,
+				int min_value, int max_value);
 
 // TurkCount
 
@@ -96,11 +99,6 @@ void		move_index_to_top_a(t_stack *stack_a, int index);
 void		move_index_to_top_b(t_stack *stack_b, int index);
 void		move_min_to_top(t_stack *stack);
 void		sort_stack(t_stack *stack);
-
-//Big_turksort
-
-void		big_turksort_to_b(t_stack *stack_a, t_stack *stack_b,
-				int min_value, int max_value);
 
 //Pruebas
 char		determine_best_move(t_stack *stack_a, t_stack *stack_b,
@@ -129,4 +127,14 @@ int			apply_rrarrb(t_stack *a, t_stack *b, int c, char ab);
 int			apply_rrarb(t_stack *a, t_stack *b, int c, char ab);
 int			apply_rarrb(t_stack *a, t_stack *b, int c, char ab);
 int			apply_rarb(t_stack *a, t_stack *b, int c, char ab);
+
+//sort_turk
+
+int			checksorted(t_stack *stack_a);
+void		sort_upto_3(t_stack *stack_a, t_stack *stack_b);
+void		sort_b(t_stack *stack_a, t_stack *stack_b);
+void		sort_a(t_stack *stack_a, t_stack *stack_b);
+void		sort(t_stack *stack_a, t_stack *stack_b);
+void		sort_three(t_stack *stack);
+
 #endif
