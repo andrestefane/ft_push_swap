@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:17:21 by astefane          #+#    #+#             */
-/*   Updated: 2024/12/19 17:40:13 by astefane         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:26:53 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,17 @@ t_stack	*ft_create_stack_a(int argc, char **argv)
 	if (ft_push(stack_a, argc, argv) == -1)
 		ft_free(stack_a, 1);
 	return (stack_a);
+}
+
+int	ft_empty(const char *str)
+{
+	if (!str || *str == '\0')
+		return (1);
+	while (*str)
+	{
+		if (!ft_space(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }

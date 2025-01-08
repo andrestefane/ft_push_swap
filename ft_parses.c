@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:57:56 by astefane          #+#    #+#             */
-/*   Updated: 2025/01/07 19:54:53 by astefane         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:27:17 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_validate_args(int argc, char **argv)
 		arg = ft_split(argv[i], ' ');
 		if (!arg)
 			return (-1);
-		if (ft_validate_split(arg, argv, argc) == -1)
+		if (ft_validate_split(arg, argv, argc) == -1 || ft_empty(argv[i]))
 		{
 			ft_freedoom(arg);
 			return (-1);

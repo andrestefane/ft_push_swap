@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:17:02 by astefane          #+#    #+#             */
-/*   Updated: 2025/01/07 19:56:40 by astefane         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:25:42 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,15 @@ int	is_sorted_arg(int argc, char **argv)
 	{
 		if (!process_arg(argv[i], &prev_num))
 			return (0);
+		if (ft_empty(argv[i]))
+			return (2);
 		i++;
 	}
 	return (1);
+}
+
+int	ft_space(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
